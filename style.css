@@ -521,6 +521,18 @@ html[lang="ar"] .hero-name {
   margin-bottom: 34px;
 }
 
+.hero-btns-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+}
+
+.hero-btns .btn svg {
+  flex: 0 0 auto;
+  opacity: .85;
+}
+
 .socials {
   display: flex;
   gap: 12px;
@@ -1123,6 +1135,24 @@ html[lang="ar"] .contact-label {
   margin-top: 6px;
 }
 
+.form-status {
+  margin-top: 14px;
+  font-size: .9rem;
+  font-weight: 600;
+  text-align: center;
+  min-height: 1.2em;
+  line-height: 1.5;
+}
+
+.form-status.ok  { color: #22c55e; }
+.form-status.err { color: #ef4444; }
+
+.form-card .btn:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .footer {
   padding: 34px 0;
   border-top: 1px solid var(--border);
@@ -1191,6 +1221,7 @@ html[lang="ar"] .contact-label {
     margin-inline: auto;
   }
   .hero-btns,
+  .hero-btns-row,
   .socials,
   .stats {
     justify-content: center;
