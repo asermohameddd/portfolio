@@ -79,6 +79,23 @@
           <div class="hero-btns reveal" style="--d:.32s">
             <a href="#projects" class="btn btn-primary" data-i18n="btn_projects">View My Work</a>
             <a href="#contact"  class="btn btn-ghost"   data-i18n="btn_contact">Get In Touch</a>
+
+            <div class="hero-btns-row">
+              <a href="CV/Aser_Mohamed_CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <span data-i18n="btn_view_resume">View Resume</span>
+              </a>
+
+              <a href="CV/Aser_Mohamed_CV.pdf" class="btn btn-ghost" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                  <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+                </svg>
+                <span data-i18n="btn_download_resume">Download Resume</span>
+              </a>
+            </div>
           </div>
 
           <div class="socials reveal" style="--d:.4s">
@@ -107,7 +124,7 @@
 
           <div class="stats reveal" style="--d:.48s">
             <div class="stat">
-              <div class="stat-num" data-count="6">0</div>
+              <div class="stat-num" data-count="7">0</div>
               <div class="stat-label" data-i18n="stat_projects">Projects</div>
             </div>
             <div class="stat">
@@ -246,10 +263,11 @@
               I'll get back to you as soon as possible.
             </p>
 
-            <form id="contactForm" action="https://formsubmit.co/aserm898@gmail.com" method="POST">
-              <input type="hidden" name="_subject" value="New message from your portfolio" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="af174f65-a991-4527-94b8-ed9502478a81" />
+              <input type="hidden" name="subject" value="New message from your portfolio" />
+              <input type="hidden" name="from_name" value="Aser Portfolio" />
+              <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
 
               <div class="form-group">
                 <label for="name" data-i18n="form_name">Your Name</label>
@@ -269,6 +287,8 @@
               <button type="submit" class="btn btn-primary" data-i18n="form_send">
                 Send Message
               </button>
+
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>
