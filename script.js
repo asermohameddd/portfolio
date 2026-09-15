@@ -21,6 +21,8 @@ const I18N = {
     hero_desc: "A first-year Computer Science student at the Egyptian Chinese University. I love building clean, animated web interfaces and solving problems with code.",
     btn_projects: 'View My Work',
     btn_contact: 'Get In Touch',
+    btn_view_resume: 'View Resume',
+    btn_download_resume: 'Download Resume',
     stat_projects: 'Projects',
     stat_skills: 'Core Skills',
     stat_tech: 'Technologies',
@@ -55,6 +57,9 @@ const I18N = {
     form_name_ph: 'Mohamed Nassar',
     form_email_ph: 'Mohamed@example.com',
     form_message_ph: "Hello Aser, I'd like to...",
+    form_sending: 'Sending...',
+    form_ok: '✅ Message sent successfully! I will get back to you soon.',
+    form_err: '❌ Something went wrong. Please try again or email me at aserm898@gmail.com',
     footer: 'Designed & built with'
   },
   ar: {
@@ -68,6 +73,8 @@ const I18N = {
     hero_desc: 'طالب في سنة اولى بكلية الحاسبات والمعلومات في الجامعة المصرية الصينية. بحب أبني واجهات ويب نظيفة ومتحركة، وأحل المشكلات بالكود.',
     btn_projects: 'شوف شغلي',
     btn_contact: 'تواصل معي',
+    btn_view_resume: 'عرض السيرة الذاتية',
+    btn_download_resume: 'تحميل السيرة الذاتية',
     stat_projects: 'مشروع',
     stat_skills: 'مهارة أساسية',
     stat_tech: 'تقنيات',
@@ -102,6 +109,9 @@ const I18N = {
     form_name_ph: 'محمد نصار',
     form_email_ph: 'Mohamed@example.com',
     form_message_ph: 'أهلاً اسر، عايز أقولك...',
+    form_sending: 'جاري الإرسال...',
+    form_ok: '✅ تم إرسال رسالتك بنجاح! هرد عليك في أقرب وقت.',
+    form_err: '❌ حصلت مشكلة، جرب تاني أو ابعتلي على aserm898@gmail.com',
     footer: 'تم التصميم والتطوير بـ'
   }
 };
@@ -211,6 +221,18 @@ const PROJECTS = [
     tags: ['HTML', 'CSS'],
     url: 'https://asermohameddd.github.io/E-commerce-smart-devices-shop/',
     code: 'https://github.com/asermohameddd/E-commerce-smart-devices-shop.git'
+  },
+  {
+    emoji: '🍕',
+    image: 'imgs/Screenshot 2026-09-15 172453.png',
+    title: { en: 'Primos Pizza', ar: 'بريموز بيتزا' },
+    desc: {
+      en: 'A modern pizza restaurant website with an appetizing animated menu and a fully responsive layout.',
+      ar: 'موقع لمطعم بيتزا عصري بقائمة طعام متحركة وتصميم متجاوب بالكامل.'
+    },
+    tags: ['HTML', 'CSS'],
+    url: 'https://asermohameddd.github.io/primos-pizza/',
+    code: 'https://github.com/asermohameddd/primos-pizza.git'
   }
 ];
 
@@ -338,7 +360,7 @@ function renderProjects() {
     <article class="project-card reveal" style="--d:${i * 0.08}s">
       <div class="project-cover">
         <span class="project-emoji">${project.emoji}</span>
-        <img class="project-img" src="${project.image}" alt="${project.title[state.lang]} preview" loading="lazy">
+        ${project.image ? `<img class="project-img" src="${project.image}" alt="${project.title[state.lang]} preview" loading="lazy">` : ''}
       </div>
       <div class="project-body">
         <h3 class="project-title">${project.title[state.lang]}</h3>
@@ -460,6 +482,51 @@ photoImg.addEventListener('error', showPhotoFallback);
 if (photoImg.complete && photoImg.naturalWidth === 0) showPhotoFallback();
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Contact form (Web3Forms) ---------- */
+const contactForm = document.getElementById('contactForm');
+const formStatus  = document.getElementById('formStatus');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn = contactForm.querySelector('button[type="submit"]');
+
+    btn.disabled = true;
+    btn.textContent = t('form_sending');
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        contactForm.reset();
+        formStatus.textContent = t('form_ok');
+        formStatus.classList.add('ok');
+      } else {
+        formStatus.textContent = t('form_err');
+        formStatus.classList.add('err');
+      }
+    } catch (err) {
+      formStatus.textContent = t('form_err');
+      formStatus.classList.add('err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = t('form_send');
+    }
+  });
+}
 
 applyLanguage();
 observeReveals();
