@@ -62,7 +62,7 @@ The portfolio currently contains several projects that represent different stage
 ## My Learning Journey
 This portfolio is not meant to show that I have already mastered everything. It represents where I am in my learning journey right now.
 
-I started with the basics of HTML and CSS and am currently moving toward JavaScript and programming fundamentals. I am also learning C++ and improving my problem-solving skills. I learn mostly by building projects and trying to turn ideas into working websites.
+I started with the basics of C++ and improving my problem-solving skills and programming fundamentals. Then i started my web development career by HTML and CSS and am currently moving toward JavaScript. I learn mostly by building projects and trying to turn ideas into working websites.
 
 **My current learning path is focused on:**
 * HTML
@@ -72,7 +72,7 @@ I started with the basics of HTML and CSS and am currently moving toward JavaScr
 * Programming Fundamentals
 * Problem Solving
 
-I plan to continue learning backend development and eventually work toward becoming a Full-Stack Developer.
+I plan to continue learning backend development and eventually work toward becoming a *Full-Stack Developer*.
 
 ---
 
